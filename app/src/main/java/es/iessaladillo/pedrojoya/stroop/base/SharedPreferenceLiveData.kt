@@ -30,7 +30,6 @@ abstract class SharedPreferenceLiveData<T>(
         sharedPrefs.unregisterOnSharedPreferenceChangeListener(preferenceChangeListener)
         super.onInactive()
     }
-
 }
 
 class SharedPreferenceIntLiveData(

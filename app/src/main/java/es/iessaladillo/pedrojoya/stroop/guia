@@ -1,0 +1,24 @@
+actividad solo con fragmentcontainerview
+
+Grafo de navegacion lo primero
+
+dashboard, dashboardFragment, finalizar con destination (Al principio a lo cutre)
+
+añadir destinos dependiendo de los botones
+
+Accion para cada navegacion que no sea desde un menu, ej. ShowAbout()
+
+Datos normales, datos reactivos (LiveData).
+
+
+about, asistente, settings, seleccion jugadores, editar, crear, play y finalmente rankin
+
+settingsÇFragment, settingListFragment, se hace por el hecho de que se consiga de nuevo la toolbar
+
+dialogos son el mismo, solo hay dos tipos de dialogos, uno que muestra un mensaje y otro que es estar seguro,
+se cambia pasando como un argumento
+
+
+crear pojo partida, en base de datos solo se guardara el jugador y la partida. Avatar es un entero.
+
+OnToolbarAvailable -> para asignar toolbar al fragmento.
