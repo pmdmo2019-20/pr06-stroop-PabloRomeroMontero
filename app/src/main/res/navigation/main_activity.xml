@@ -1,8 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_activity">
-
-    <!-- TODO -->
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity"
+    app:startDestination="@id/dashboardFragment">
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.DashboardFragment"
+        android:label="@string/dashboard_title"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_aboutFragment2"
+            app:destination="@id/aboutFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment2"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.GameFragment"
+        android:label="fragment_game"
+        tools:layout="@layout/fragment_game" />
+    <fragment
+        android:id="@+id/playerFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.PlayerFragment"
+        android:label="fragment_player"
+        tools:layout="@layout/fragment_player" />
+    <fragment
+        android:id="@+id/rankingFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.RankingFragment"
+        android:label="fragment_ranking"
+        tools:layout="@layout/fragment_ranking" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 
 </navigation>

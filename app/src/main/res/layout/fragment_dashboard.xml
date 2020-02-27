@@ -1,14 +1,338 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:elevation="@dimen/main_toolbar_elevation"
     tools:context=".ui.DashboardFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewPlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="@dimen/main_card_elevation"
+        app:cardCornerRadius="@dimen/main_card_cornerRadius"
+        app:layout_constraintBottom_toTopOf="@+id/cardViewRanking"
+        app:layout_constraintEnd_toStartOf="@+id/cardViewSettings"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewMainAvatarDashboard">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/imageView_main_play"
+                android:layout_width="@dimen/dashboard_card_image_size"
+                android:layout_height="@dimen/dashboard_card_image_size"
+                android:src="@drawable/ic_play_black_24dp"
+                android:tint="@color/playOption"
+                app:layout_constraintBottom_toTopOf="@+id/TextView_Main_play"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/TextView_Main_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dashboard_lblPlay"
+                android:textColor="@color/playOption"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView_main_play" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewSettings"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="@dimen/main_card_elevation"
+        app:cardCornerRadius="@dimen/main_card_cornerRadius"
+        app:layout_constraintBottom_toTopOf="@+id/cardViewAssistant"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardViewPlay"
+        app:layout_constraintTop_toBottomOf="@+id/viewMainAvatarDashboard">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/imageView_main_settings"
+                android:layout_width="@dimen/dashboard_card_image_size"
+                android:layout_height="@dimen/dashboard_card_image_size"
+                android:src="@drawable/ic_settings_black_24dp"
+                android:tint="@color/settingsOption"
+                app:layout_constraintBottom_toTopOf="@+id/TextView_Main_settings"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/TextView_Main_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dashboard_lblSettings"
+                android:textColor="@color/settingsOption"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView_main_settings" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewRanking"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="@dimen/main_card_elevation"
+        app:cardCornerRadius="@dimen/main_card_cornerRadius"
+        app:layout_constraintBottom_toTopOf="@+id/cardViewPlayer"
+        app:layout_constraintEnd_toStartOf="@+id/cardViewAssistant"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewPlay">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/imageView_main_ranking"
+                android:layout_width="@dimen/dashboard_card_image_size"
+                android:layout_height="@dimen/dashboard_card_image_size"
+                android:src="@drawable/ic_ranking_black_24dp"
+                android:tint="@color/rankingOption"
+                app:layout_constraintBottom_toTopOf="@+id/TextView_Main_ranking"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/TextView_Main_ranking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dashboard_lblRanking"
+                android:textColor="@color/rankingOption"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView_main_ranking" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewAssistant"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="@dimen/main_card_elevation"
+        app:cardCornerRadius="@dimen/main_card_cornerRadius"
+        app:layout_constraintBottom_toTopOf="@+id/cardViewAbout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardViewRanking"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewSettings">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/imageView_main_assistant"
+                android:layout_width="@dimen/dashboard_card_image_size"
+                android:layout_height="@dimen/dashboard_card_image_size"
+                android:src="@drawable/ic_assistant_black_24dp"
+                android:tint="@color/assistantOption"
+                app:layout_constraintBottom_toTopOf="@+id/TextView_Main_assistant"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/TextView_Main_assistant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dashboard_lblAssistant"
+                android:textColor="@color/assistantOption"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView_main_assistant" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewPlayer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="@dimen/main_card_elevation"
+        app:cardCornerRadius="@dimen/main_card_cornerRadius"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cardViewAbout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewRanking">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/imageView_main_player"
+                android:layout_width="@dimen/dashboard_card_image_size"
+                android:layout_height="@dimen/dashboard_card_image_size"
+                android:src="@drawable/ic_player_black_24dp"
+                android:tint="@color/playerOption"
+                app:layout_constraintBottom_toTopOf="@+id/TextView_Main_player"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/TextView_Main_player"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dashboard_lblPlayer"
+                android:textColor="@color/playerOption"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView_main_player" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewAbout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="@dimen/main_card_elevation"
+        app:cardCornerRadius="@dimen/main_card_cornerRadius"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardViewPlayer"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewAssistant">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/imageView_main_about"
+                android:layout_width="@dimen/dashboard_card_image_size"
+                android:layout_height="@dimen/dashboard_card_image_size"
+                android:src="@drawable/ic_about_black_24dp"
+                android:tint="@color/aboutOption"
+                app:layout_constraintBottom_toTopOf="@+id/TextView_Main_about"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/TextView_Main_about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dashboard_lblAbout"
+                android:textColor="@color/aboutOption"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView_main_about" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <View
+        android:id="@+id/viewMainAvatarDashboard"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/main_header_height"
+        android:background="@color/design_default_color_secondary_variant"
+        app:layout_constraintBottom_toTopOf="@+id/cardViewPlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarMain" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarMain"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_toolbar_elevation"
+        android:background="@color/design_default_color_secondary_variant"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageViewAvatarDashboard"
+        android:layout_width="@dimen/main_avatar_size"
+        android:layout_height="@dimen/main_avatar_size"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toBottomOf="@+id/viewMainAvatarDashboard"
+        app:layout_constraintEnd_toEndOf="@+id/viewMainAvatarDashboard"
+        app:layout_constraintStart_toStartOf="@+id/viewMainAvatarDashboard"
+        app:layout_constraintTop_toTopOf="@id/viewMainAvatarDashboard"
+        app:layout_constraintVertical_bias="0.395" />
+
+    <TextView
+        android:id="@+id/textViewAvatarDashboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/player_selection_no_player_selected"
+        app:layout_constraintBottom_toBottomOf="@+id/viewMainAvatarDashboard"
+        app:layout_constraintEnd_toEndOf="@id/viewMainAvatarDashboard"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@id/viewMainAvatarDashboard"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewAvatarDashboard" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
