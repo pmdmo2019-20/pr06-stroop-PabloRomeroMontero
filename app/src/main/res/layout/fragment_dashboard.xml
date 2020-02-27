@@ -299,18 +299,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarMain" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarMain"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/main_toolbar_elevation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:background="@color/design_default_color_secondary_variant"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewAvatarDashboard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/viewMainAvatarDashboard"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageViewAvatarDashboard"
@@ -327,6 +329,8 @@
         android:id="@+id/textViewAvatarDashboard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/main_textSize_5x"
+        android:textColor="@color/white"
         android:text="@string/player_selection_no_player_selected"
         app:layout_constraintBottom_toBottomOf="@+id/viewMainAvatarDashboard"
         app:layout_constraintEnd_toEndOf="@id/viewMainAvatarDashboard"

@@ -10,6 +10,4 @@ import android.view.ViewGroup
 
 import es.iessaladillo.pedrojoya.stroop.R
 
-class AboutFragment : Fragment(R.layout.fragment_about) {
-
-}
+class AboutFragment : Fragment(R.layout.fragment_about)
