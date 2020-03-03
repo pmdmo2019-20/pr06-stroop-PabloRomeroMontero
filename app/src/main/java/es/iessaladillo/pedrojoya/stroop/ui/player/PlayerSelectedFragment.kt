@@ -78,10 +78,13 @@ class PlayerSelectedFragment : Fragment(R.layout.fragment_player_selected) {
         if (preferencesSettings.getLong(PREF_KEY_CURRENT_PLAYER_ID_KEY, NO_PLAYER) == NO_PLAYER) {
             imageViewAvatarPlayerSelected.setImageResource(R.drawable.logo)
                 editTextAvatarPlayerSelected.text = getString(R.string.player_selection_no_player_selected)
+            btnEdit.visibility =
+                 View.INVISIBLE
         }else {
             currentPlayer = viewModel.queryPlayer(preferencesSettings.getLong(PREF_KEY_CURRENT_PLAYER_ID_KEY, NO_PLAYER)).value!!
             imageViewAvatarPlayerSelected.setImageResource(currentPlayer.avatar)
             editTextAvatarPlayerSelected.text = currentPlayer.nombre
+            btnEdit.visibility = View.VISIBLE
         }
     }
 
