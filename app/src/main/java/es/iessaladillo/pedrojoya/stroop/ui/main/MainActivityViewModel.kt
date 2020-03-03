@@ -1,5 +1,6 @@
 package es.iessaladillo.pedrojoya.stroop.ui.main
 
+import android.os.AsyncTask
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +11,7 @@ import es.iessaladillo.pedrojoya.stroop.data.local.entity.Player
 
 class MainActivityViewModel(val repository: AppDatabase) : ViewModel() {
 
-     val gameList: LiveData<List<Game>> = gameMode.switchMap {
+    val gameList: LiveData<List<Game>> = gameMode.switchMap {
         if (it == null) {
             repository.GameDao.queryAllGame()
         } else {
@@ -19,7 +20,7 @@ class MainActivityViewModel(val repository: AppDatabase) : ViewModel() {
     }
 
 
-     val playerList: LiveData<List<Player>> = repository.playerDao.queryAllPlayers()
+    val playerList: LiveData<List<Player>> = repository.playerDao.queryAllPlayers()
 
     //Filtro
     private val _gameMode: MutableLiveData<Boolean?> = MutableLiveData(null)
@@ -34,43 +35,37 @@ class MainActivityViewModel(val repository: AppDatabase) : ViewModel() {
     }
 
     fun queryPlayer(idPlayer: Long): LiveData<Player> =
-         repository.playerDao.queryPlayer(idPlayer)
+        repository.playerDao.queryPlayer(idPlayer)
 
 
     fun insertPlayer(player: Player) {
-        repository.playerDao.insertPlayer(player)
+        AsyncTask.THREAD_POOL_EXECUTOR.execute { repository.playerDao.insertPlayer(player) }
+
     }
 
     fun editPlayer(player: Player) {
-        repository.playerDao.editPlayer(player)
+        AsyncTask.THREAD_POOL_EXECUTOR.execute { repository.playerDao.editPlayer(player) }
     }
 
-    fun deletePlayer(player: Player){
-        repository.playerDao.deletePlayer(player)
+    fun deletePlayer(player: Player) {
+        AsyncTask.THREAD_POOL_EXECUTOR.execute { repository.playerDao.deletePlayer(player) }
     }
 
 
-
-
-
-
-
-
-
-//    GAMEDAO
-    fun inserGame(game: Game){
-        repository.GameDao.inserGame(game)
+    //    GAMEDAO
+    fun inserGame(game: Game) {
+        AsyncTask.THREAD_POOL_EXECUTOR.execute { repository.GameDao.inserGame(game) }
     }
 
-    fun queryAllGame() : LiveData<List<Game>>{
+    fun queryAllGame(): LiveData<List<Game>> {
         return repository.GameDao.queryAllGame()
     }
 
-    fun queryGameModeGame(gamemode: Boolean): LiveData<List<Game>>{
+    fun queryGameModeGame(gamemode: Boolean): LiveData<List<Game>> {
         return repository.GameDao.queryGameModeGame(gamemode)
     }
 
-    fun queryGame(idGame:Long): LiveData<Game>{
+    fun queryGame(idGame: Long): LiveData<Game> {
         return repository.GameDao.queryGame(idGame)
     }
 
