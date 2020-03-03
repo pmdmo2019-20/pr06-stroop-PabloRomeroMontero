@@ -1,31 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.player.PlayerSelectedFragment">
 
-    <View
-        android:id="@+id/viewPlayerSelected"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/viewPlayerSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/main_header_height"
+            android:background="@color/design_default_color_secondary_variant"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarPlayerSelected"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/design_default_color_secondary_variant"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/viewPlayerSelected"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+        <ImageView
+            android:id="@+id/imageViewAvatarPlayerSelected"
+            android:layout_width="@dimen/main_avatar_size"
+            android:layout_height="@dimen/main_avatar_size"
+            android:src="@drawable/logo"
+            app:layout_constraintBottom_toBottomOf="@+id/viewPlayerSelected"
+            app:layout_constraintEnd_toEndOf="@+id/viewPlayerSelected"
+            app:layout_constraintStart_toStartOf="@+id/viewPlayerSelected"
+            app:layout_constraintTop_toTopOf="@id/viewPlayerSelected"
+            app:layout_constraintVertical_bias="0.395" />
+
+        <TextView
+            android:id="@+id/editTextAvatarPlayerSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/main_textSize_5x"
+            android:textColor="@color/white"
+            android:text="@string/player_selection_no_player_selected"
+            app:layout_constraintBottom_toBottomOf="@+id/viewPlayerSelected"
+            app:layout_constraintEnd_toEndOf="@id/viewPlayerSelected"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="@id/viewPlayerSelected"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewAvatarPlayerSelected" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lstPlayers"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewPlayerSelected"
+            tools:listitem="@layout/player_item"/>
+
+
+        <Button
+            android:id="@+id/btnEdit"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="47dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="23dp"
+            android:layout_marginBottom="60dp"
+            android:background="@color/design_default_color_secondary_variant"
+            android:drawableStart="@drawable/ic_player_edition_black_24dp"
+            android:drawableTint="@color/white"
+            android:text="@string/player_selection_btnEdit"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/editTextAvatarPlayerSelected"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewAvatarPlayerSelected"
+            app:layout_constraintHorizontal_bias="0.985"
+            app:layout_constraintStart_toEndOf="@+id/viewPlayerSelected"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarPlayerSelected"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/lblEmptyPlayer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_player_add_black_24dp"
+            android:gravity="center"
+            android:text="@string/player_selection_no_players_yet"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/playerOption"
+            app:drawableTint="@color/playerOption"
+            app:layout_constraintTop_toBottomOf="@id/viewPlayerSelected"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddPlayer"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/main_header_height"
-        android:background="@color/design_default_color_secondary_variant"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarPlayerSelected"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/design_default_color_secondary_variant"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/viewPlayerSelected"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="@dimen/main_margin_2x"
+        android:layout_marginBottom="@dimen/main_margin_2x"
+        android:tint="@color/white"
+        app:srcCompat="@drawable/ic_player_add_black_48dp"
+        android:backgroundTint="@color/accent"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

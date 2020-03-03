@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.stroop.ui
+package es.iessaladillo.pedrojoya.stroop.ui.main
 
 import android.os.Bundle
 import android.view.Menu

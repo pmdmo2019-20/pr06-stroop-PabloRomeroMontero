@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.stroop.ui
+package es.iessaladillo.pedrojoya.stroop
 
 import android.content.Context
 import androidx.appcompat.app.AlertDialog
@@ -12,3 +12,5 @@ fun show(context: Context, descripcion: String) {
         .create()
         .show()
 }
+
+

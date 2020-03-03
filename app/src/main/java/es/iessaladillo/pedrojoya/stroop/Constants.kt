@@ -5,6 +5,7 @@ const val PREF_KEY_CURRENT_PLAYER_ID_KEY = "prefCurrentPlayerId"
 const val PREF_KEY_FIRST_TIME = "prefFirstTime"
 const val POINTS_PER_CORRECT_ANSWER: Int = 10
 const val NUMBER_FRAGMENTS_VIEWPAGER: Int = 8
+typealias OnItemClickListener = (position: Int) -> Unit
 
 val avatars = listOf(
     R.drawable.avatar_01_mexican,

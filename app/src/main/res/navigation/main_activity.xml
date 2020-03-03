@@ -6,7 +6,7 @@
     app:startDestination="@id/dashboardFragmentDestination">
     <fragment
         android:id="@+id/dashboardFragmentDestination"
-        android:name="es.iessaladillo.pedrojoya.stroop.ui.DashboardFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.main.DashboardFragment"
         android:label="@string/dashboard_title"
         tools:layout="@layout/fragment_dashboard" >
         <action
@@ -78,5 +78,15 @@
         android:id="@+id/assistantFragmentDestination"
         android:name="es.iessaladillo.pedrojoya.stroop.ui.assistant.AssistantFragment"
         android:label="AssistantFragment" />
+    <fragment
+        android:id="@+id/playerCreateFragmentDestination"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.player.PlayerCreateFragment"
+        android:label="fragment_player_create"
+        tools:layout="@layout/fragment_player_create" />
+    <fragment
+        android:id="@+id/playerEditFragmentDestination"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.player.PlayerEditFragment"
+        android:label="fragment_player_edit"
+        tools:layout="@layout/fragment_player_edit" />
 
 </navigation>

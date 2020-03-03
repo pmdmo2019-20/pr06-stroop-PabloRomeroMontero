@@ -8,5 +8,5 @@
     android:layout_height="match_parent"
     app:defaultNavHost="true"
     app:navGraph="@navigation/main_activity"
-    tools:context=".ui.MainActivity"
+    tools:context=".ui.main.MainActivity"
     tools:ignore="FragmentTagUsage" />

@@ -24,13 +24,15 @@ import es.iessaladillo.pedrojoya.stroop.data.local.entity.Player
 import es.iessaladillo.pedrojoya.stroop.show
 import es.iessaladillo.pedrojoya.stroop.ui.main.MainActivityViewModel
 import es.iessaladillo.pedrojoya.stroop.ui.main.MainActivityViewModelFactory
+import kotlinx.android.synthetic.main.fragment_player_create.*
 import kotlinx.android.synthetic.main.fragment_player_selected.*
 
-class PlayerSelectedFragment : Fragment(R.layout.fragment_player_selected) {
+class PlayerCreateFragment : Fragment(R.layout.fragment_player_create) {
+    var avatar: Int = -1
 
     private val navController by lazy { findNavController() }
 
-    private val listAdapter: PlayerSelectedFragmentAdapter = PlayerSelectedFragmentAdapter().apply {
+    private val listAdapter: AvatarAdapterFragment = AvatarAdapterFragment().apply {
         setOnItemClickListener { showPlayer(it) }
     }
 
@@ -52,27 +54,23 @@ class PlayerSelectedFragment : Fragment(R.layout.fragment_player_selected) {
         var player: Player? = viewModel.queryPlayer(listAdapter.getItemId(position)).value
         imageViewAvatarPlayerSelected.setImageResource(avatars[player?.avatar!!])
         editTextAvatarPlayerSelected.text = player?.nombre
-        preferencesSettings.edit().apply{
-            putLong(PREF_KEY_CURRENT_PLAYER_ID_KEY, player.id)
-        }
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupToolbar()
         setupViews()
-        observePlayer()
     }
 
 
     private fun setupViews() {
         setupRecyclerView()
-        btnEdit.setOnClickListener { navigateToEdit() }
-        fabAddPlayer.setOnClickListener { navigateToAdd() }
+        fabCreatePlayer.setOnClickListener { savePlayer() }
     }
 
     private fun setupRecyclerView() {
-        lstPlayers.run {
+        lstAvatarCreate.run {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(requireContext(), 3, RecyclerView.HORIZONTAL, false)
             itemAnimator = DefaultItemAnimator()
@@ -86,37 +84,26 @@ class PlayerSelectedFragment : Fragment(R.layout.fragment_player_selected) {
         }
     }
 
-    private fun observePlayer() {
-        viewModel.playerList.observe(this) { showPlayers(it) }
-    }
-
-    private fun showPlayers(player: List<Player>) {
-        listAdapter.submitList(player)
-        lblEmptyPlayer.visibility =
-            if (player.isEmpty()) View.VISIBLE else View.INVISIBLE
-    }
-
-    private fun navigateToEdit() {
-        this.navController.navigate(R.id.playerEditFragmentDestination)
-    }
-
-    private fun navigateToAdd() {
-        this.navController.navigate(R.id.playerCreateFragmentDestination)
-    }
-
-    private fun setupToolbar() {
-        (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbarPlayerSelected)
-        toolbarPlayerSelected.inflateMenu(R.menu.menu)
-        toolbarPlayerSelected.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.mnuInfo -> {
-                    show(
-                        requireContext(),
-                        getString(R.string.player_selection_help_description)
-                    )
-                }
-            }
-            true
+    private fun savePlayer() {
+        if (editTextAvatarPlayerCreate.text.isNotEmpty()) {
+            this.navController.navigateUp()
+            viewModel.insertPlayer(Player(0, editTextAvatarPlayerCreate.text.toString(), 0))
         }
     }
-}
+
+        private fun setupToolbar() {
+            (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbarPlayerCreate)
+            toolbarPlayerCreate.inflateMenu(R.menu.menu)
+            toolbarPlayerCreate.setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.mnuInfo -> {
+                        show(
+                            requireContext(),
+                            getString(R.string.player_creation_help_description)
+                        )
+                    }
+                }
+                true
+            }
+        }
+    }
