@@ -1,23 +1,17 @@
 package es.iessaladillo.pedrojoya.stroop.ui.player
 
-import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.View
-import android.widget.GridLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import es.iessaladillo.pedrojoya.stroop.PREF_KEY_CURRENT_PLAYER_ID_KEY
 
 import es.iessaladillo.pedrojoya.stroop.R
-import es.iessaladillo.pedrojoya.stroop.avatars
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
 import es.iessaladillo.pedrojoya.stroop.data.local.AppDatabase
 import es.iessaladillo.pedrojoya.stroop.data.local.entity.Player
@@ -25,15 +19,14 @@ import es.iessaladillo.pedrojoya.stroop.show
 import es.iessaladillo.pedrojoya.stroop.ui.main.MainActivityViewModel
 import es.iessaladillo.pedrojoya.stroop.ui.main.MainActivityViewModelFactory
 import kotlinx.android.synthetic.main.fragment_player_create.*
-import kotlinx.android.synthetic.main.fragment_player_selected.*
+import kotlinx.android.synthetic.main.fragment_player_edit.*
 
 class PlayerCreateFragment : Fragment(R.layout.fragment_player_create) {
-    var avatar: Int = -1
-
+    lateinit var currentPlayer: Player
     private val navController by lazy { findNavController() }
 
     private val listAdapter: AvatarAdapterFragment = AvatarAdapterFragment().apply {
-        setOnItemClickListener { showPlayer(it) }
+        setOnItemClickListener { setupAvatarText(it) }
     }
 
 
@@ -49,12 +42,8 @@ class PlayerCreateFragment : Fragment(R.layout.fragment_player_create) {
         )
     }
 
-    @SuppressLint("CommitPrefEdits")
-    private fun showPlayer(position: Int) {
-        var player: Player? = viewModel.queryPlayer(listAdapter.getItemId(position)).value
-        imageViewAvatarPlayerSelected.setImageResource(avatars[player?.avatar!!])
-        editTextAvatarPlayerSelected.text = player?.nombre
-
+    private fun setupAvatarText(position: Int) {
+        imageViewAvatarPlayerEdit.setImageResource(listAdapter.getItemId(position).toInt())
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -67,12 +56,13 @@ class PlayerCreateFragment : Fragment(R.layout.fragment_player_create) {
     private fun setupViews() {
         setupRecyclerView()
         fabCreatePlayer.setOnClickListener { savePlayer() }
+
     }
 
     private fun setupRecyclerView() {
         lstAvatarCreate.run {
             setHasFixedSize(true)
-            layoutManager = GridLayoutManager(requireContext(), 3, RecyclerView.HORIZONTAL, false)
+            layoutManager = GridLayoutManager(requireContext(), 3, RecyclerView.VERTICAL, false)
             itemAnimator = DefaultItemAnimator()
             addItemDecoration(
                 DividerItemDecoration(

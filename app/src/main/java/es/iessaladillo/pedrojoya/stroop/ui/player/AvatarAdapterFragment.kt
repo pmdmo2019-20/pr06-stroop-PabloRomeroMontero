@@ -27,7 +27,7 @@ class AvatarAdapterFragment: RecyclerView.Adapter<AvatarAdapterFragment.ViewHold
         viewType: Int
     ): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val itemView = layoutInflater.inflate(R.layout.player_item, parent, false)
+        val itemView = layoutInflater.inflate(R.layout.avatar_item, parent, false)
         return ViewHolder(itemView, onItemClickListener)
     }
 

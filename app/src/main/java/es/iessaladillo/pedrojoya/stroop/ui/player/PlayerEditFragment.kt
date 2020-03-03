@@ -81,7 +81,7 @@ class PlayerEditFragment : Fragment(R.layout.fragment_player_edit) {
     private fun setupRecyclerView() {
         lstAvatar.run {
             setHasFixedSize(true)
-            layoutManager = GridLayoutManager(requireContext(), 3, RecyclerView.HORIZONTAL, false)
+            layoutManager = GridLayoutManager(requireContext(), 3, RecyclerView.VERTICAL, false)
             itemAnimator = DefaultItemAnimator()
             addItemDecoration(
                 DividerItemDecoration(

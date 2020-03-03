@@ -14,19 +14,19 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import es.iessaladillo.pedrojoya.stroop.PREF_KEY_CURRENT_PLAYER_ID_KEY
+import es.iessaladillo.pedrojoya.stroop.*
 
-import es.iessaladillo.pedrojoya.stroop.R
-import es.iessaladillo.pedrojoya.stroop.avatars
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
 import es.iessaladillo.pedrojoya.stroop.data.local.AppDatabase
 import es.iessaladillo.pedrojoya.stroop.data.local.entity.Player
-import es.iessaladillo.pedrojoya.stroop.show
 import es.iessaladillo.pedrojoya.stroop.ui.main.MainActivityViewModel
 import es.iessaladillo.pedrojoya.stroop.ui.main.MainActivityViewModelFactory
+import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.fragment_player_selected.*
 
 class PlayerSelectedFragment : Fragment(R.layout.fragment_player_selected) {
+
+    lateinit var currentPlayer: Player
 
     private val navController by lazy { findNavController() }
 
@@ -49,11 +49,11 @@ class PlayerSelectedFragment : Fragment(R.layout.fragment_player_selected) {
 
     @SuppressLint("CommitPrefEdits")
     private fun showPlayer(position: Int) {
-        var player: Player? = viewModel.queryPlayer(listAdapter.getItemId(position)).value
-        imageViewAvatarPlayerSelected.setImageResource(avatars[player?.avatar!!])
-        editTextAvatarPlayerSelected.text = player?.nombre
+        currentPlayer = viewModel.queryPlayer(listAdapter.getItemId(position)).value!!
+        imageViewAvatarPlayerSelected.setImageResource(currentPlayer.avatar)
+        editTextAvatarPlayerSelected.text = currentPlayer.nombre
         preferencesSettings.edit().apply{
-            putLong(PREF_KEY_CURRENT_PLAYER_ID_KEY, player.id)
+            putLong(PREF_KEY_CURRENT_PLAYER_ID_KEY, currentPlayer.id)
         }
     }
 
@@ -66,9 +66,23 @@ class PlayerSelectedFragment : Fragment(R.layout.fragment_player_selected) {
 
 
     private fun setupViews() {
+        setupImgText()
         setupRecyclerView()
         btnEdit.setOnClickListener { navigateToEdit() }
         fabAddPlayer.setOnClickListener { navigateToAdd() }
+        lblEmptyPlayer.setOnClickListener{ navigateToAdd()}
+    }
+
+    private fun setupImgText() {
+
+        if (preferencesSettings.getLong(PREF_KEY_CURRENT_PLAYER_ID_KEY, NO_PLAYER) == NO_PLAYER) {
+            imageViewAvatarPlayerSelected.setImageResource(R.drawable.logo)
+                editTextAvatarPlayerSelected.text = getString(R.string.player_selection_no_player_selected)
+        }else {
+            currentPlayer = viewModel.queryPlayer(preferencesSettings.getLong(PREF_KEY_CURRENT_PLAYER_ID_KEY, NO_PLAYER)).value!!
+            imageViewAvatarPlayerSelected.setImageResource(currentPlayer.avatar)
+            editTextAvatarPlayerSelected.text = currentPlayer.nombre
+        }
     }
 
     private fun setupRecyclerView() {
