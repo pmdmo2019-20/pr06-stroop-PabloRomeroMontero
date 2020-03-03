@@ -55,7 +55,7 @@ class PlayerEditFragment : Fragment(R.layout.fragment_player_edit) {
 
     @SuppressLint("CommitPrefEdits")
     private fun setPlayer(position: Int) {
-        imageViewAvatarPlayerSelected.setImageResource( listAdapter.getItemId(position) )
+//        imageViewAvatarPlayerSelected.setImageResource( listAdapter.getItemId(position) )
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
