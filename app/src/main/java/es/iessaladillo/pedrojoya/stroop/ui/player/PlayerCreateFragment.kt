@@ -43,7 +43,7 @@ class PlayerCreateFragment : Fragment(R.layout.fragment_player_create) {
     }
 
     private fun setupAvatarText(position: Int) {
-        imageViewAvatarPlayerEdit.setImageResource(listAdapter.getItemId(position).toInt())
+        imageViewAvatarPlayerCreate.setImageResource(listAdapter.getItemId(position).toInt())
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
